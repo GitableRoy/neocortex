@@ -42,7 +42,7 @@ void zobrist::init() {
 	zobrist_initialized = true;
 }
 
-bool is_init() {
+bool zobrist::is_init() {
 	return zobrist_initialized;
 }
 
