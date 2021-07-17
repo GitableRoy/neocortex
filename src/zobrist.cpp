@@ -5,7 +5,6 @@
  * LICENSE.txt, included in this source code distribution.
  */
 
-#include "log.h"
 #include "piece.h"
 #include "square.h"
 #include "zobrist.h"
@@ -41,6 +40,10 @@ void zobrist::init() {
 
 	black_to_move_key = dist(twister);
 	zobrist_initialized = true;
+}
+
+bool is_init() {
+	return zobrist_initialized;
 }
 
 zobrist::Key zobrist::piece(int sq, int p) {
