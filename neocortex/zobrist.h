@@ -24,7 +24,7 @@ namespace neocortex {
 		 *
 		 * @return true if Zobrist keys are initialized, false otherwise.
 		 */
-	  bool is_init();
+		bool is_init();
 
 		/**
 		 * Gets the Zobrist key for a piece on a square.

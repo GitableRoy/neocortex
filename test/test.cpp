@@ -2,16 +2,16 @@
 
 #include <gtest/gtest.h>
 
-#include "../src/attacks.h"
-#include "../src/bitboard.h"
-#include "../src/board.h"
-#include "../src/eval.h"
-#include "../src/eval_consts.h"
-#include "../src/perft.h"
-#include "../src/piece.h"
-#include "../src/search.h"
-#include "../src/tt.h"
-#include "../src/zobrist.h"
+#include "../neocortex/attacks.h"
+#include "../neocortex/bitboard.h"
+#include "../neocortex/board.h"
+#include "../neocortex/eval.h"
+#include "../neocortex/eval_consts.h"
+#include "../neocortex/perft.h"
+#include "../neocortex/piece.h"
+#include "../neocortex/search.h"
+#include "../neocortex/tt.h"
+#include "../neocortex/zobrist.h"
 
 using namespace neocortex;
 

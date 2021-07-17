@@ -1,11 +1,11 @@
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 package(default_visibility = ["//visibility:public"])
 
 cc_library(
     name = "attacks",
-    srcs = ["src/attacks.cpp"],
-    hdrs = ["src/attacks.h"],
+    srcs = ["neocortex/attacks.cpp"],
+    hdrs = ["neocortex/attacks.h"],
     deps = [
         ":bitboard",
         ":magic_consts",
@@ -17,8 +17,8 @@ cc_library(
 
 cc_library(
     name = "bitboard",
-    srcs = ["src/bitboard.cpp"],
-    hdrs = ["src/bitboard.h"],
+    srcs = ["neocortex/bitboard.cpp"],
+    hdrs = ["neocortex/bitboard.h"],
     deps = [
         ":platform",
         ":square",
@@ -27,8 +27,8 @@ cc_library(
 
 cc_library(
     name = "board",
-    srcs = ["src/board.cpp"],
-    hdrs = ["src/board.h"],
+    srcs = ["neocortex/board.cpp"],
+    hdrs = ["neocortex/board.h"],
     deps = [
         ":attacks",
         ":bitboard",
@@ -42,8 +42,8 @@ cc_library(
 
 cc_library(
     name = "eval",
-    srcs = ["src/eval.cpp"],
-    hdrs = ["src/eval.h"],
+    srcs = ["neocortex/eval.cpp"],
+    hdrs = ["neocortex/eval.h"],
     deps = [
         ":position",
     ],
@@ -52,8 +52,8 @@ cc_library(
 
 cc_library(
     name = "eval_consts",
-    srcs = ["src/eval_consts.cpp"],
-    hdrs = ["src/eval_consts.h"],
+    srcs = ["neocortex/eval_consts.cpp"],
+    hdrs = ["neocortex/eval_consts.h"],
     deps = [
         ":piece",
     ],
@@ -61,13 +61,13 @@ cc_library(
 
 cc_library(
     name = "magic_consts",
-    hdrs = ["src/magic_consts.h"],
+    hdrs = ["neocortex/magic_consts.h"],
 )
 
 cc_library(
     name = "move",
-    srcs = ["src/move.cpp"],
-    hdrs = ["src/move.h"],
+    srcs = ["neocortex/move.cpp"],
+    hdrs = ["neocortex/move.h"],
     deps = [
         ":attacks",
         ":bitboard",
@@ -79,8 +79,8 @@ cc_library(
 
 cc_library(
     name = "perft",
-    srcs = ["src/perft.cpp"],
-    hdrs = ["src/perft.h"],
+    srcs = ["neocortex/perft.cpp"],
+    hdrs = ["neocortex/perft.h"],
     deps = [
       ":position",
       ":util",
@@ -89,8 +89,8 @@ cc_library(
 
 cc_library(
     name = "piece",
-    srcs = ["src/piece.cpp"],
-    hdrs = ["src/piece.h"],
+    srcs = ["neocortex/piece.cpp"],
+    hdrs = ["neocortex/piece.h"],
     deps = [
         ":util",
     ],
@@ -98,13 +98,13 @@ cc_library(
 
 cc_library(
     name = "platform",
-    hdrs = ["src/platform.h"],
+    hdrs = ["neocortex/platform.h"],
 )
 
 cc_library(
     name = "position",
-    srcs = ["src/position.cpp"],
-    hdrs = ["src/position.h"],
+    srcs = ["neocortex/position.cpp"],
+    hdrs = ["neocortex/position.h"],
     deps = [
         ":board",
         ":eval_consts",
@@ -117,8 +117,8 @@ cc_library(
 
 cc_library(
     name = "search",
-    srcs = ["src/search.cpp"],
-    hdrs = ["src/search.h"],
+    srcs = ["neocortex/search.cpp"],
+    hdrs = ["neocortex/search.h"],
     deps = [
       ":eval",
       ":position",
@@ -131,14 +131,14 @@ cc_library(
 
 cc_library(
     name = "square",
-    srcs = ["src/square.cpp"],
-    hdrs = ["src/square.h"],
+    srcs = ["neocortex/square.cpp"],
+    hdrs = ["neocortex/square.h"],
 )
 
 cc_library(
     name = "tt",
-    srcs = ["src/tt.cpp"],
-    hdrs = ["src/tt.h"],
+    srcs = ["neocortex/tt.cpp"],
+    hdrs = ["neocortex/tt.h"],
     deps = [
       ":eval",
       ":move",
@@ -148,8 +148,8 @@ cc_library(
 
 cc_library(
     name = "util",
-    srcs = ["src/util.cpp"],
-    hdrs = ["src/util.h"],
+    srcs = ["neocortex/util.cpp"],
+    hdrs = ["neocortex/util.h"],
     deps = [
         ":platform",
     ],
@@ -157,8 +157,8 @@ cc_library(
 
 cc_library(
     name = "zobrist",
-    srcs = ["src/zobrist.cpp"],
-    hdrs = ["src/zobrist.h"],
+    srcs = ["neocortex/zobrist.cpp"],
+    hdrs = ["neocortex/zobrist.h"],
     deps = [
         ":piece",
         ":square",
