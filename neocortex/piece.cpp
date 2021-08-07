@@ -8,7 +8,6 @@
 #include "piece.h"
 #include "util.h"
 
-#include <cassert>
 #include <cctype>
 
 #include <stdexcept>
@@ -16,8 +15,8 @@
 using namespace neocortex;
 
 char piece::get_uci(int piece) {
-	assert(is_valid(piece));
-
+	if (!is_valid(piece)) 
+	  throw util::logerr("Cannot get uci of piece: %d", piece);
 	return "PpBbNnRrQqKk"[piece];
 }
 
@@ -63,7 +62,8 @@ int piece::color_from_uci(char uci) {
 }
 
 char piece::color_to_uci(int col) {
-	assert(col == WHITE || col == BLACK);
+	if (col != WHITE && col != BLACK)
+	  throw util::logerr("Cannot get uci from color: %d", col);
 
 	return "wb"[col];
 }
@@ -88,7 +88,8 @@ int piece::type_from_uci(char uci) {
 }
 
 char piece::type_to_uci(int type) {
-	assert(type >= 0 && type < 6);
+	if (type < 0 || type > 6)
+	  throw util::logerr("Cannot get uci from type: %d", type);
 
 	return "pbnrqk"[type];
 }

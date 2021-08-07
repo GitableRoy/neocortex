@@ -52,6 +52,18 @@ namespace neocortex {
 			return std::runtime_error(format(fmt, args...).c_str());
 		}
 
+		/**
+		 * Shorthand for formatting a logic error.
+		 *
+		 * @param fmt Format string.
+		 * @param args Format parameters.
+		 * @return logic_error exception with formatted string as content.
+		 */
+		template <typename ... Args>
+		std::exception logerr(std::string fmt, Args ... args) {
+			return std::logic_error(format(fmt, args...).c_str());
+		}
+
 		/* Time manipulation */
 		typedef std::chrono::steady_clock::time_point time_point;
 

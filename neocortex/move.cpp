@@ -10,8 +10,6 @@
 #include "move.h"
 #include "util.h"
 
-#include <cassert>
-
 using namespace neocortex;
 
 const Move Move::null = Move();
@@ -19,8 +17,10 @@ const Move Move::null = Move();
 Move::Move() : m_src(square::null), m_dst(square::null), m_ptype(piece::null) {}
 
 Move::Move(int src, int dst, int ptype) {
-	assert(square::is_valid(src));
-	assert(square::is_valid(dst));
+	if (!square::is_valid(src))
+	  throw util::logerr("Cannot construct move with source: %d", src);
+	if (!square::is_valid(dst))
+	  throw util::logerr("Cannot construct move with destination: %d", dst);
 
 	this->m_src = src;
 	this->m_dst = dst;

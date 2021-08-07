@@ -74,6 +74,7 @@ cc_library(
         ":board",
         ":piece",
         ":square",
+        ":util",
     ],
 )
 
@@ -82,8 +83,8 @@ cc_library(
     srcs = ["neocortex/perft.cpp"],
     hdrs = ["neocortex/perft.h"],
     deps = [
-      ":position",
-      ":util",
+        ":position",
+        ":util",
     ],
 )
 
@@ -133,6 +134,9 @@ cc_library(
     name = "square",
     srcs = ["neocortex/square.cpp"],
     hdrs = ["neocortex/square.h"],
+    deps =[
+        ":util",
+    ],
 )
 
 cc_library(
@@ -140,9 +144,9 @@ cc_library(
     srcs = ["neocortex/tt.cpp"],
     hdrs = ["neocortex/tt.h"],
     deps = [
-      ":eval",
-      ":move",
-      ":zobrist",
+        ":eval",
+        ":move",
+        ":zobrist",
     ],
 )
 

@@ -6,8 +6,7 @@
  */
 
 #include "square.h"
-
-#include <cassert>
+#include "util.h"
 
 using namespace neocortex;
 
@@ -15,7 +14,8 @@ int square::from_uci(std::string uci) {
 	if (uci == "-") {
 		return square::null;
 	} else {
-		assert(uci.size() == 2);
+		if (uci.size() != 2)
+		  throw util::logerr("Cannot make square from uci: %s", uci.c_str());
 		return at(uci[1] - '1', uci[0] - 'a');
 	}
 }

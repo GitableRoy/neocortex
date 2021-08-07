@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <cassert>
+#include "util.h"
 
 namespace neocortex {
 	namespace piece {
@@ -44,7 +44,8 @@ namespace neocortex {
 		 * @return Piece value.
 		 */
 		inline int make_piece(int color, int type) {
-			assert(color == WHITE || color == BLACK);
+			if (color != WHITE && color != BLACK)
+			  throw util::logerr("Cannot make piece with color: %d", color);
 			return (type << 1) | color;
 		}
 
@@ -55,7 +56,8 @@ namespace neocortex {
 		 * @return Piece color.
 		 */
 		inline int color(int piece) {
-			assert(is_valid(piece));
+			if (!is_valid(piece))
+			  throw util::logerr("Cannot get color of piece: %d", piece);
 			return piece & 1;
 		}
 
@@ -66,7 +68,8 @@ namespace neocortex {
 		 * @return Piece type.
 		 */
 		inline int type(int piece) {
-			assert(is_valid(piece));
+			if (!is_valid(piece))
+			  throw util::logerr("Cannot get type of piece: %d", piece);
 			return piece >> 1;
 		}
 

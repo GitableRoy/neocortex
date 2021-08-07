@@ -7,7 +7,8 @@
 
 #pragma once
 
-#include <cassert>
+#include "util.h"
+
 #include <string>
 
 namespace neocortex {
@@ -31,7 +32,8 @@ namespace neocortex {
 		 * @param file Input file (0-7 inclusive).
 		 */
 		inline int at(int rank, int file) {
-			assert(rank >= 0 && rank < 8 && file >= 0 && file < 8);
+			if (rank < 0 || rank >= 8 || file < 0 || file >= 8)
+			  throw util::logerr("Cannot get a square at: (%d, %d)", rank, file);
 			return rank * 8 + file;
 		}
 
@@ -50,7 +52,8 @@ namespace neocortex {
 		 * @return Square rank index.
 		 */
 		inline int rank(int sq) {
-			assert(is_valid(sq));
+			if (!is_valid(sq))
+				throw util::logerr("Cannot get rank with invalid square: %d", sq);
 			return sq >> 3;
 		}
 
@@ -61,7 +64,8 @@ namespace neocortex {
 		 * @return Square file index.
 		 */
 		inline int file(int sq) {
-			assert(is_valid(sq));
+			if (!is_valid(sq)) 
+			  throw util::logerr("Cannot get file with invalid square: %d", sq);
 			return sq & 7;
 		}
 
