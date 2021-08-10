@@ -9,9 +9,10 @@
 #include "platform.h"
 
 #include <algorithm>
-#include <sstream>
-#include <iomanip>
+#include <cassert>
 #include <ctime>
+#include <iomanip>
+#include <sstream>
 
 #if defined NEOCORTEX_LINUX || defined NEOCORTEX_APPLE
 #include <errno.h>
@@ -25,13 +26,9 @@ std::string util::timestring() {
 	std::tm tm;
 	
 #ifdef NEOCORTEX_WIN32
-	if (localtime_s(&tm, &t)) {
-		throw std::runtime_error("localtime() failed.");
-	}
+	assert(!localtime_s(&tm, &t));
 #else
-	if (!localtime_r(&t, &tm)) {
-		throw std::runtime_error("localtime() failed.");
-	}
+	assert(localtime_r(&t, &tm));
 #endif
 
 	std::stringstream ss;

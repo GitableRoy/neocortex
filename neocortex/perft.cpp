@@ -25,9 +25,7 @@ std::string perft::results::to_row(int depth) {
 }
 
 perft::results perft::run(Position& p, int depth) {
-	if (depth < 0) {
-		throw util::fmterr("Invalid perft depth %d", depth);
-	}
+	assert (depth >= 0);
 
 	current_results = perft::results();
 

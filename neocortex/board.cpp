@@ -36,9 +36,7 @@ Board::Board() {
 Board::Board(std::string uci) : Board() {
 	std::vector<std::string> ranks = util::split(uci, '/');
 
-	if (ranks.size() != 8) {
-		throw util::fmterr("Invalid UCI: expected 8 ranks, parsed %d", ranks.size());
-	}
+	assert(ranks.size() == 8);
 
 	int r = 8;
 	for (auto rank : ranks) {
@@ -48,24 +46,18 @@ Board::Board(std::string uci) : Board() {
 		for (auto c : rank) {
 			if (isdigit(c)) {
 				for (int j = 0; j < (c - '0'); ++j) {
-					if (f >= 8) {
-						throw util::fmterr("Invalid UCI: overflow in %s", rank.c_str());
-					}
+					assert(f < 8);
 
 					state[square::at(r, f++)] = piece::null;
 				}
 			} else {
-				if (f >= 8) {
-					throw util::fmterr("Invalid UCI: overflow in %s", rank.c_str());
-				}
+				assert(f < 8);
 
 				place(square::at(r, f++), piece::from_uci(c));
 			}
 		}
 
-		if (f != 8) {
-			throw util::fmterr("Invalid UCI: not enough pieces in %s", rank.c_str());
-		}
+		assert(f == 8);
 	}
 }
 

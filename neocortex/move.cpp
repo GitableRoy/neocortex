@@ -28,9 +28,7 @@ Move::Move(int src, int dst, int ptype) {
 }
 
 Move::Move(std::string uci) {
-	if (uci.size() < 4 || uci.size() > 5) {
-		throw util::fmterr("Invalid UCI \"%s\": moves must be 4 or 5 characters, parsed %d", uci.c_str(), uci.size());
-	}
+	assert (4 <=  uci.size() && uci.size() <= 5);
 
 	m_src = square::from_uci(uci.substr(0, 2));
 	m_dst = square::from_uci(uci.substr(2, 2));

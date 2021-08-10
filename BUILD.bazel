@@ -91,9 +91,6 @@ cc_library(
     name = "piece",
     srcs = ["neocortex/piece.cpp"],
     hdrs = ["neocortex/piece.h"],
-    deps = [
-        ":util",
-    ],
 )
 
 cc_library(
@@ -111,7 +108,6 @@ cc_library(
         ":move",
         ":piece",
         ":square",
-        ":util",
     ],
 )
 
@@ -124,7 +120,6 @@ cc_library(
       ":position",
       ":move",
       ":tt",
-      ":util",
     ]
 )
 

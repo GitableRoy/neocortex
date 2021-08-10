@@ -399,14 +399,14 @@ TEST(PieceTest, FromUci) {
 	EXPECT_EQ(piece::from_uci('P'), piece::make_piece(piece::WHITE, piece::PAWN));
 	EXPECT_EQ(piece::from_uci('q'), piece::make_piece(piece::BLACK, piece::QUEEN));
 
-	EXPECT_THROW(piece::from_uci('A'), std::exception);
+	EXPECT_EQ(piece::from_uci('A'), piece::null);
 }
 
 TEST(PieceTest, ColorFromUci) {
 	EXPECT_EQ(piece::color_from_uci('w'), piece::WHITE);
 	EXPECT_EQ(piece::color_from_uci('b'), piece::BLACK);
 
-	EXPECT_THROW(piece::color_from_uci('g'), std::exception);
+	EXPECT_EQ(piece::color_from_uci('g'), piece::null);
 }
 
 TEST(PieceTest, ColorToUci) {
@@ -431,7 +431,7 @@ TEST(PieceTest, TypeFromUci) {
 	EXPECT_EQ(piece::type_from_uci('q'), piece::QUEEN);
 	EXPECT_EQ(piece::type_from_uci('k'), piece::KING);
 
-	EXPECT_THROW(piece::type_from_uci('G'), std::exception);
+	EXPECT_EQ(piece::type_from_uci('G'), piece::null);
 }
 
 /**
@@ -445,8 +445,8 @@ TEST(PositionTest, CanConstruct) {
 TEST(PositionTest, FromFen) {
 	EXPECT_NO_THROW(Position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")); /* standard FEN */
 
-	EXPECT_THROW(Position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 2"), std::exception); /* too many fields */
-	EXPECT_THROW(Position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0"), std::exception); /* too few fields */
+	EXPECT_DEATH(Position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 2"), ""); /* too many fields */
+	EXPECT_DEATH(Position("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0"), ""); /* too few fields */
 }
 
 TEST(PositionTest, ToFen) {

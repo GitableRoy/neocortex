@@ -6,12 +6,9 @@
  */
 
 #include "piece.h"
-#include "util.h"
 
 #include <cassert>
 #include <cctype>
-
-#include <stdexcept>
 
 using namespace neocortex;
 
@@ -45,7 +42,7 @@ int piece::from_uci(char uci) {
 		type = KING;
 		break;
 	default:
-		throw util::fmterr("Invalid UCI piece: %c", uci);
+		return piece::null;
 	}
 
 	return make_piece((uci == typechar) ? BLACK : WHITE, type);
@@ -58,7 +55,7 @@ int piece::color_from_uci(char uci) {
 	case 'b':
 		return BLACK;
 	default:
-		throw util::fmterr("Invalid UCI color: %c", uci);
+		return piece::null;
 	}
 }
 
@@ -83,7 +80,7 @@ int piece::type_from_uci(char uci) {
 	case 'k':
 		return KING;
 	default:
-		throw util::fmterr("Invalid UCI type: %c", uci);
+		return piece::null;
 	}
 }
 

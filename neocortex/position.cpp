@@ -45,9 +45,7 @@ Position::Position() {
 Position::Position(std::string fen) {
 	std::vector<std::string> fields = util::split(fen, ' ');
 
-	if (fields.size() != 6) {
-		throw util::fmterr("Invalid FEN: expected 6 fields, parsed %d", fields.size());
-	}
+	assert(fields.size() == 6);
 
 	board = Board(fields[0]);
 	color_to_move = piece::color_from_uci(fields[1][0]);

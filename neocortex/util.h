@@ -8,10 +8,10 @@
 #pragma once
 
 #include <iostream>
+#include <cassert>
 #include <chrono>
 #include <memory>
 #include <string>
-#include <stdexcept>
 #include <vector>
 
 namespace neocortex {
@@ -28,9 +28,7 @@ namespace neocortex {
 		std::string format(std::string fmt, Args ... args) {
 			int length = snprintf(nullptr, 0, fmt.c_str(), args ...) + 1;
 
-			if (length <= 0) {
-				throw std::runtime_error("Error occurred formatting string.");
-			}
+			assert (length > 0);
 
 			char* buffer = new char[length];
 			std::unique_ptr<char[]> buffer_ref(buffer);
@@ -38,18 +36,6 @@ namespace neocortex {
 			snprintf(buffer, length, fmt.c_str(), args ...);
 
 			return std::string(buffer, buffer + length - 1);
-		}
-
-		/**
-		 * Shorthand for formatting a runtime error.
-		 *
-		 * @param fmt Format string.
-		 * @param args Format parameters.
-		 * @return runtime_error exception with formatted string as content.
-		 */
-		template <typename ... Args>
-		std::exception fmterr(std::string fmt, Args ... args) {
-			return std::runtime_error(format(fmt, args...).c_str());
 		}
 
 		/* Time manipulation */
