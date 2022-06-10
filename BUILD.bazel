@@ -2,6 +2,11 @@ load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 
 package(default_visibility = ["//visibility:public"])
 
+filegroup(
+    name = "headers",
+    srcs = glob(["neocortex/*.h"]),
+)
+
 cc_library(
     name = "attacks",
     srcs = ["neocortex/attacks.cpp"],
