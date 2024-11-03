@@ -1,0 +1,10 @@
+'''
+This module is a wrapper for the neocortex library.
+'''
+
+module(
+  name = "neocortex",
+  repo_name = "com_github_neocortex",
+)
+
+bazel_dep(name = "googletest", version = "1.15.2")

@@ -1,1 +1,2 @@
-build --cxxopt='-std=c++17 -Wall -Werror -Wno-format-security' --linkopt='pthread'
+build --cxxopt='-std=c++17'
+common --enable_bzlmod

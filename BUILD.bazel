@@ -180,7 +180,7 @@ cc_test(
         ":search",
         ":tt",
         ":zobrist",
-        "@gtest//:gtest_main",
+        "@googletest//:gtest_main",
     ],
 )
  
